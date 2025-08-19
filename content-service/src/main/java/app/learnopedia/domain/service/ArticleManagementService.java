@@ -1,7 +1,7 @@
 package app.learnopedia.domain.service;
 
 import app.learnopedia.domain.model.Article;
-import app.learnopedia.infrastructure.repository.ArticleRepository;
+import app.learnopedia.infrastructure.repository.primary.ArticleRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

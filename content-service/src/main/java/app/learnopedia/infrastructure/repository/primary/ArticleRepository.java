@@ -1,4 +1,4 @@
-package app.learnopedia.infrastructure.repository;
+package app.learnopedia.infrastructure.repository.primary;
 
 import app.learnopedia.domain.model.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
