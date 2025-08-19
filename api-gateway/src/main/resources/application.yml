@@ -1,0 +1,60 @@
+server:
+  port: 8079
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    discovery:
+      reactive:
+        enabled: false
+    gateway:
+      locator:
+        enabled: true
+      routes:
+        - id: service1-route
+          uri: lb://SERVICE1/  # "lb" oznacza, że używamy Load Balancer (Eureka)
+          predicates:
+            - Path=/products/**  # Wszystkie żądania z prefiksem "/service1" będą kierowane do service1
+        - id: service2-route
+          uri: lb://SERVICE2/
+          predicates:
+            - Path=/service2/**  # Wszystkie żądania z prefiksem "/service2" będą kierowane do service2
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL} #http://192.168.0.100:8761/eureka/  # Adres Eureka Server
+
+  instance:
+    hostname: api-gateway #192.168.0.100  # Ustawienie hostname, jeżeli jest to potrzebne
+    prefer-ip-address: false  # W niektórych przypadkach może być konieczne preferowanie adresów IP
+
+# Opcjonalnie: Można dodać
+#
+#logging:
+#  level:
+#    root: DEBUG  # Ustawienie ogólnego poziomu logowania na DEBUG
+#    org.springframework.web: DEBUG  # Dla Spring Web
+#    org.springframework.cloud: DEBUG  # Dla Spring Cloud
+#    io.netty: DEBUG  # Dla Netty
+#    com.example: DEBUG  # Dla twoich własnych klas, jeśli chcesz śledzić
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics  # Umożliwia dostęp do tych endpointów (możesz dodać inne, np. 'env' lub 'loggers')
+      base-path: /actuator  # Domyślny path dla Actuatora (np. /actuator/health)
+  endpoint:
+    health:
+      show-details: always  # Ustawienie, aby zawsze pokazywał szczegóły stanu zdrowia aplikacji
+    metrics:
+      enabled: true  # Włącza metryki aplikacji

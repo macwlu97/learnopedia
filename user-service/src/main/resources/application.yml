@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: service2
+
+  profiles:
+    active: dev  # Określenie, który profil ma być aktywny
+
+  cloud:
+    discovery:
+      enabled: true
+    config:
+      uri: ${CONFIG_SERVER_URL}
+
+  config:
+    import: configserver:${CONFIG_SERVER_URL}
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics  # Umożliwia dostęp do tych endpointów
+      base-path: /actuator  # Domyślny path dla Actuatora (np. /actuator/health)
+  endpoint:
+    health:
+      show-details: always  # Ustawienie, aby zawsze pokazywał szczegóły stanu zdrowia aplikacji
+    metrics:
+      enabled: true  # Włącza metryki aplikacji
