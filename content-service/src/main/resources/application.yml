@@ -21,12 +21,14 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/learnopedia
-    username: <twój_user>
-    password: <twoje_haslo>
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+    username: maciejwnuklipinski
+    password: pswd
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        ddl-auto: update
 
 server:
   port: 8081  # Port, na którym będzie nasłuchiwać Service1

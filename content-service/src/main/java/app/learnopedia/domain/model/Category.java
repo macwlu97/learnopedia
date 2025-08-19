@@ -1,17 +1,17 @@
 package app.learnopedia.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.UUID;
 
-// Category.java
 @Entity
+@Data
 public class Category {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
     private String name;
-    private String description;
 }
