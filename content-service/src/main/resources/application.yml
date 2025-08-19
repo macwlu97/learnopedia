@@ -2,17 +2,31 @@ spring:
   application:
     name: content-service
 
-  profiles:
-    active: ${SPRING_PROFILES_ACTIVE}  # Określenie, który profil ma być aktywny
+#  profiles:
+#    active: ${SPRING_PROFILES_ACTIVE}  # Określenie, który profil ma być aktywny
 
   cloud:
-    discovery:
-      enabled: true
     config:
-      uri: ${CONFIG_SERVER_URL}
+      import-check:
+        enabled: false
+#    discovery:
+#      enabled: true
+#    config:
+#      uri: ${CONFIG_SERVER_URL}
 
   config:
-    import: configserver:${CONFIG_SERVER_URL}
+    import-check:
+      enabled: false
+#    import: configserver:${CONFIG_SERVER_URL}
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/learnopedia
+    username: <twój_user>
+    password: <twoje_haslo>
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 server:
   port: 8081  # Port, na którym będzie nasłuchiwać Service1
