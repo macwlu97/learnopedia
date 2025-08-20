@@ -58,8 +58,9 @@
 		<module>eureka-server</module>
 		<module>api-gateway</module>
 		<module>config-server</module>
-		<module>service1</module>
-		<module>service2</module>
+		<module>content-service</module>
+		<module>gpt-service</module>
+		<module>user-service</module>
 	</modules>
 
 	<build>

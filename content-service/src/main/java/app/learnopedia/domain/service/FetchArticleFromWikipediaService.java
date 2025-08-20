@@ -18,14 +18,17 @@ public class FetchArticleFromWikipediaService {
     }
 
     public Article fetchAndSave(String title) {
-        String content = wikipediaClient.fetchArticle(title);
-        Article article = new Article();
-        article.setTitle(title);
-        article.setContent(content);
-        article.setSource("wikipedia");
-        article.setVersion(1);
-        article.setCreatedAt(LocalDateTime.now());
-        article.setUpdatedAt(LocalDateTime.now());
-        return repository.save(article);
+        return repository.findByTitle(title)
+                .orElseGet(() -> {
+                    String content = wikipediaClient.fetchArticle(title);
+                    Article article = new Article();
+                    article.setTitle(title);
+                    article.setContent(content);
+                    article.setSource("wikipedia");
+                    article.setVersion(1);
+                    article.setCreatedAt(LocalDateTime.now());
+                    article.setUpdatedAt(LocalDateTime.now());
+                    return repository.save(article);
+                });
     }
 }

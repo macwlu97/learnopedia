@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: SERVICE1
+
+  profiles:
+    active: dev_test  # Określenie, który profil ma być aktywny
+
+  cloud:
+    discovery:
+      enabled: true
+    config:
+      uri: http://localhost:8888
+
+  config:
+    import: configserver:http://localhost:8888
+
+server:
+  port: 8081  # Port, na którym będzie nasłuchiwać Service1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics  # Umożliwia dostęp do tych endpointów
+      base-path: /actuator  # Domyślny path dla Actuatora (np. /actuator/health)
+  endpoint:
+    health:
+      show-details: always  # Ustawienie, aby zawsze pokazywał szczegóły stanu zdrowia aplikacji
+    metrics:
+      enabled: true  # Włącza metryki aplikacji

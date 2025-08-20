@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: gpt-service
+
+#  profiles:
+#    active: ${SPRING_PROFILES_ACTIVE}  # Określenie, który profil ma być aktywny
+
+  cloud:
+    config:
+      import-check:
+        enabled: false
+#    discovery:
+#      enabled: true
+#    config:
+#      uri: ${CONFIG_SERVER_URL}
+
+  config:
+    import-check:
+      enabled: false
+#    import: configserver:${CONFIG_SERVER_URL}
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+server:
+  port: 8082  # Port, na którym będzie nasłuchiwać Service1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics  # Umożliwia dostęp do tych endpointów
+      base-path: /actuator  # Domyślny path dla Actuatora (np. /actuator/health)
+  endpoint:
+    health:
+      show-details: always  # Ustawienie, aby zawsze pokazywał szczegóły stanu zdrowia aplikacji
+    metrics:
+      enabled: true  # Włącza metryki aplikacji
