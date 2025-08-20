@@ -19,13 +19,19 @@ spring:
       enabled: false
 #    import: configserver:${CONFIG_SERVER_URL}
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
 
 server:
-  port: 8082  # Port, na którym będzie nasłuchiwać Service1
+  port: 8083  # Port, na którym będzie nasłuchiwać Service1
 
 management:
   endpoints:

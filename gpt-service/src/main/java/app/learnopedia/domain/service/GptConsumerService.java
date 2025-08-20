@@ -20,9 +20,17 @@ public class GptConsumerService {
         // pobierz artykuł z content-service
         var article = contentClient.getArticleById(articleId);
         if (article != null) {
-            // przetwórz artykuł przez GPT
-            String gptResponse = gptService.askGpt(article.getContent());
-            System.out.println("GPT Response for article " + articleId + ": " + gptResponse);
+
+            // Przetwarzanie artykułu
+            var educationalContent = gptService.generateEducationalContent(articleId);
+
+            // Tu możesz np. zapisać wynik do bazy lub opublikować do kolejnego topicu
+            System.out.println("Generated educational content for article " + articleId + ": " + educationalContent);
+
+
+//             przetwórz artykuł przez GPT
+//            String gptResponse = gptService.askGpt(article.getContent());
+//            System.out.println("GPT Response for article " + articleId + ": " + gptResponse);
         }
     }
 }

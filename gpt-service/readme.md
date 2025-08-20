@@ -11,6 +11,8 @@ Install Python 3.10+ if not already installed.
 
 Create a virtual environment:
 
+pwd - /Users/username/gpt4all/gpt4all-project
+
 ```bash
 python3 -m venv ~/gpt4all-env
 source ~/gpt4all-env/bin/activate
