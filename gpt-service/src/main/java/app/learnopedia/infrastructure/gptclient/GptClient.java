@@ -1,4 +1,4 @@
-package app.learnopedia.infrastructure.client;
+package app.learnopedia.infrastructure.gptclient;
 
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 @Component
-public class GptRestClient {
+public class GptClient {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private final String url = "http://localhost:8000/generate";

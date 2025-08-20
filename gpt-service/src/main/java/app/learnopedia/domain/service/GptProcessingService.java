@@ -1,14 +1,14 @@
 package app.learnopedia.domain.service;
 
-import app.learnopedia.infrastructure.client.GptRestClient;
+import app.learnopedia.infrastructure.gptclient.GptClient;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GptClientService {
+public class GptProcessingService {
 
-    private final GptRestClient gptRestClient;
+    private final GptClient gptRestClient;
 
-    public GptClientService(GptRestClient gptRestClient) {
+    public GptProcessingService(GptClient gptRestClient) {
         this.gptRestClient = gptRestClient;
     }
 
